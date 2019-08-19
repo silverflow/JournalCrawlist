@@ -4,15 +4,15 @@ import requests as rq
 중앙일보 기자 목록 페이지를 파싱해서 이름과 이메일을 가져오는 프로그램
 '''
 #함수 정의
+#url의 body에 기자목록을 가져옴
 def get_pages(bs):
     return bs.select('body .bd ul.list li')
-
+#기자목록 중에서 이름과 이메일을 파싱함
 def data_parse(pages):
     for page in pages:
         name = page.find('h2').text.strip()
-    email = page.find('span', class_="icon_email").text.strip()
-    print(name,email)
-
+        email = page.find('span', class_="icon_email").text.strip()
+        print(name,email)
 
 url= 'https://news.joins.com/Reporter'
 page_path='?page=%d'
