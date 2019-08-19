@@ -2,7 +2,9 @@ from bs4 import BeautifulSoup
 import requests as rq
 import DBConn
 '''
+19.08.19 v0.1
 중앙일보 기자 목록 페이지를 파싱해서 이름과 이메일을 가져오는 프로그램
+중복제거 안한 버전
 '''
 #함수 정의
 #url의 body에 기자목록을 가져옴
