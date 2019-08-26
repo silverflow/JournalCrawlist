@@ -15,7 +15,7 @@ def data_parse(pages):
     for page in pages:
         name = page.find('h2').text.strip()
         email = page.find('span', class_="icon_email").text.strip()
-        curs.execute(sql, (name, email,"중앙일보"))
+        curs.execute(sql, (name, email,"중앙일보", twit,facebook))
         print(name,email)
 #DB 커넥트 정보
 conn = DBConn.conn()

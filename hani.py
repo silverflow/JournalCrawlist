@@ -39,7 +39,7 @@ def contains_word(t):
 e_reg = re.compile('[a-zA-Z0-9._%+-]+@hani.co.kr')
 #문장에 선임이 들어있는지 확인
 j_reg = re.compile('선임')
-#문장에 인턴이 들어있는지 확인
+#문장에 피디가 들어있는지 확인
 i_reg = re.compile('피디')
 #DB 커넥트 정보
 conn = DBConn.conn()
@@ -50,8 +50,8 @@ sql = "INSERT INTO `journalistinfo` (`journal_email`, `journal_name`, `press`) V
 db_list = {}
 abc_db_list = {}
 #크롤링 시작값 1씩늘어남 17년도 기사부터 긁어옴
-number = 900000
-end_num = 906751
+number = 881785
+end_num = 907104
 #사람인척하기
 session = requests.Session()
 headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'\
@@ -99,7 +99,7 @@ while number<end_num:
                                 list_num = name.index('기자')
                                 j_name = name[list_num-1]
                                 db_list[email] = j_name                   
-                                print(number,":",j_name,email)
+                                print(number-1,":",j_name,email)
                             else:   
                                 #기자가 없어서 버림
                                 continue
@@ -119,7 +119,6 @@ while number<end_num:
 
 
 abc_list = sorted(db_list.items(), key=lambda k : k[1])
-print(abc_list)
 
 val = abc_list
 curs.executemany(sql, val)
